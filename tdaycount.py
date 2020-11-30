@@ -8,7 +8,7 @@ class tdaycount(MRJob):
             fields = line.split(',')
             if len(fields) == 7 :
                 time_epoch = int(fields[6])
-                month = time.strftime("%B",time.gmtime(time_epoch)) 
+                month = time.strftime("%Y - %m",time.gmtime(time_epoch)) 
                 yield (month, 1)
         except:
             pass
