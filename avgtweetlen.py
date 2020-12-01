@@ -1,13 +1,16 @@
 from mrjob.job import MRJob
+import time
 
 class Lab3part1(MRJob):
 	def mapper(self, _, line):
 		try:
-			fields = line.split(';')
-			if len(fields) == 4:
-				message = fields[2]
-				yield('chars', (len(message),1) )
-				yield('hashtags', (message.count('#'), 1) )
+			fields = line.split(',')
+			if len(fields) == 7:
+				ammount = int(fields[3])
+				time_epoch = int(fields[6])
+				month = time.strftime("%B",time.gmtime(time_epoch))
+				yield(month, (ammount,1))
+				
 		except:
 			pass
 	def combiner(self, feature, values):
