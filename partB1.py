@@ -7,12 +7,21 @@ WORD_REGEX =re.compile(r"\b\w+\b")
 
 #this line declares the calss Lab1m that extends the MRJob format.
 
-class Lab1(MRJob):
+class PartB1(MRJob):
 
     def mapper(self, _, line):
-        words = WORD_REGEX.findall(line)
-        for word in words:
-            yield (word.lower(), 1)
+        
+        try:
+            lines = line.split(',')
+            if len(lines)==7:
+                address = lines[2]
+                value =int(lines[3])
+                yield(address,value)
+        except:
+            pass
+    
+    def combiner(self, word,counts):
+        yield (word, sum(counts))
 
     def reducer(self, word,counts):
         yield (word, sum(counts))
@@ -24,4 +33,4 @@ class Lab1(MRJob):
 
 
 if __name__=='__main__':
-    Lab1.run()
+    PartB1.run()
