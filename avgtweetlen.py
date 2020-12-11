@@ -8,7 +8,7 @@ class Lab3part1(MRJob):
 			if len(fields) == 7:
 				ammount = int(fields[3])
 				time_epoch = int(fields[6])
-				month = time.strftime("%B",time.gmtime(time_epoch))
+				month = time.strftime("%Y - %m",time.gmtime(time_epoch))
 				yield(month, (ammount,1))
 				
 		except:
