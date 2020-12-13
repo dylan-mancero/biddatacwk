@@ -8,7 +8,7 @@ class gasprice(MRJob):
 			if len(fields) == 7:
 				gasprice = int(fields[5])
 				time_epoch = int(fields[6])
-				month = time.strftime("%Y - &m",time.gmtime(time_epoch))
+				month = time.strftime("%Y - %m",time.gmtime(time_epoch))
 				yield(month, (gasprice,1))
 				
 		except:
