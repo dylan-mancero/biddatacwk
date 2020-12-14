@@ -16,7 +16,7 @@ class gasfilter(MRJob):
                 fields = line.split(',')
                 address = fields[2]
                 gas = int(fields[4])
-                date = str(time.strftime("%Y - %m", time.gmtime(int(fields[6]))))
+                date =time.strftime("%m/%Y", time.gmtime(int(fields[6])))
                 if address in topContracts:
                     yield(date,(gas,1))
 

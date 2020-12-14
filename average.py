@@ -1,15 +1,15 @@
 from mrjob.job import MRJob
 import time
 
-class gasprice(MRJob):
+class Lab3part1(MRJob):
 	def mapper(self, _, line):
 		try:
-			fields = line.split(',')
-			if len(fields) == 7:
-				gasprice = int(fields[4])
-				time_epoch = int(fields[6])
-				month = time.strftime("%Y - %m",time.gmtime(time_epoch))
-				yield(month, (gasprice,1))
+			fields = line.split(' ')
+			if len(fields) == 2:
+				date = str(fields[0])
+				ammount = int(fields[1])
+			
+				yield(date, (ammount,1))
 				
 		except:
 			pass
@@ -30,4 +30,4 @@ class gasprice(MRJob):
 		yield (feature, total/count)
 
 if __name__=='__main__':
-	gasprice.run()
+	Lab3part1.run()
